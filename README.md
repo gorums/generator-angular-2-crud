@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # generator-angular-2-crud [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > This app generate a CRUD for Angular2 
 
@@ -36,3 +37,7 @@ MIT © [gorums]()
 [daviddm-url]: https://david-dm.org/gorums/generator-angular-2-crud
 [coveralls-image]: https://coveralls.io/repos/gorums/generator-angular-2-crud/badge.svg
 [coveralls-url]: https://coveralls.io/r/gorums/generator-angular-2-crud
+=======
+# angular2-crud
+This app generate a CRUD for Angular2
+>>>>>>> 39b2d3446cb18169efd1ebc725a609d69c03162a
