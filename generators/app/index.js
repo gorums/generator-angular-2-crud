@@ -30,6 +30,12 @@ module.exports = Generator.extend({
     },
     {
       type: 'input',
+      name: 'baseurl',
+      message: 'Server API URL',
+      default: 'http://localhost:3500'
+    },
+    {
+      type: 'input',
       name: 'models',
       message: 'Your models.json relative path',
       default: 'models.json'
@@ -44,7 +50,7 @@ module.exports = Generator.extend({
   writing: function () {
     console.log('after calling readFile');
 
-    try {
+    //try {
       var models = JSON.parse(fs.readFileSync(this.props.models, 'utf8'));
 
       this.fs.copyTpl(
@@ -69,10 +75,7 @@ module.exports = Generator.extend({
         }
       );
 
-      this.fs.copy(
-        this.templatePath('LICENSE'),
-        this.destinationPath('LICENSE')
-      );
+      // *
 
       this.fs.copy(
         this.templatePath('tsconfig.json'),
@@ -89,16 +92,117 @@ module.exports = Generator.extend({
         this.destinationPath('webpack.config.js')
       );
 
+      //src/*
+
       this.fs.copy(
-        this.templatePath('src/**/*'),
-        this.destinationPath('src')
+        this.templatePath('src/global.css'),
+        this.destinationPath('src/global.css')
       );
-    }
+
+      this.fs.copy(
+        this.templatePath('src/polyfills.ts'),
+        this.destinationPath('src/polyfills.ts')
+      );
+
+      this.fs.copy(
+        this.templatePath('src/vendor.ts'),
+        this.destinationPath('src/vendor.ts')
+      );
+
+      this.fs.copy(
+        this.templatePath('src/main.ts'),
+        this.destinationPath('src/main.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/index.html'),
+        this.destinationPath('src/index.html'),
+        {
+          name: this.props.name
+        }
+      );
+
+      //src/app/*
+
+      this.fs.copy(
+        this.templatePath('src/app/api.ts'),
+        this.destinationPath('src/app/api.ts')
+      );
+
+      this.fs.copy(
+        this.templatePath('src/app/app.ts'),
+        this.destinationPath('src/app/app.ts')
+      );
+
+      this.fs.copy(
+        this.templatePath('src/app/index.ts'),
+        this.destinationPath('src/app/index.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/config.ts'),
+        this.destinationPath('src/app/config.ts'),
+        {
+          baseurl: this.props.baseurl
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/routes.ts'),
+        this.destinationPath('src/app/routes.ts'),
+        {
+          models: this.props.models
+        }
+      );
+
+      //src/app/store/*
+
+      this.fs.copy(
+        this.templatePath('src/app/store/helper.ts'),
+        this.destinationPath('src/app/store/helper.ts')
+      );
+
+      this.fs.copy(
+        this.templatePath('src/app/store/index.ts'),
+        this.destinationPath('src/app/store/index.ts')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/store/state.ts'),
+        this.destinationPath('src/app/store/state.ts'),
+        {
+          models: this.props.models
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/containers/index.ts'),
+        this.destinationPath('src/app/containers/index.ts'),
+        {
+          models: this.props.models
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/models/index.ts'),
+        this.destinationPath('src/app/models/index.ts'),
+        {
+          models: this.props.models
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/services/index.ts'),
+        this.destinationPath('src/app/services/index.ts'),
+        {
+          models: this.props.models
+        }
+      );
+    /*}
     catch (errr)
     {
       console.log('Error: ' + errr);
-
-    }
+    }*/
   },
 
   install: function () {
