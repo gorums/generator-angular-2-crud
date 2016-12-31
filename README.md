@@ -49,7 +49,7 @@ touch models.json
 
 ## Generation
 
-Then generate your new project into your project folder with the model.json defined:
+Then generate your new project into your project folder with the **models.json** defined:
 
 ```bash
 yo angular-2-crud
@@ -63,7 +63,7 @@ Now you can run your new CRUD
 npm start
 ```
 
-http://127.0.0.0:3000
+http://127.0.0.1:3000 or http://0.0.0.0:3000
 
 
 ## License
