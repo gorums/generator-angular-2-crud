@@ -10,17 +10,25 @@ First, install [Yeoman](http://yeoman.io) and generator-angular-2-crud using [np
 npm install -g yo
 npm install -g generator-angular-2-crud
 ```
+
 To run your new project you need install the next packages:
 
- * typescript (npm install --global typescript)
- * webpack (npm install --global webpack)
- * webpack-dev-server (npm install --global webpack-dev-server)
+```bash
+npm install --global typescript
+npm install --global webpack
+npm install --global webpack-dev-server
+```
  
 ## Defined your models.json
 
 Access to the project folder and create a file named **models.json**
 
-Example of models.json
+```bash
+mkdir my_new_crud && cd my_new_crud
+touch models.json
+```
+
+ * Example of models.json
 
 ```json
  {
@@ -39,7 +47,7 @@ Example of models.json
 }
  ```
 
-## Generation CRUD
+## Generation
 
 Then generate your new project into your project folder with the model.json defined:
 
@@ -69,7 +77,4 @@ MIT © [gorums]()
 [travis-url]: https://travis-ci.org/gorums/generator-angular-2-crud
 [daviddm-image]: https://david-dm.org/gorums/generator-angular-2-crud.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/gorums/generator-angular-2-crud
-=======
-# angular2-crud
-This app generate a CRUD for Angular2
->>>>>>> 39b2d3446cb18169efd1ebc725a609d69c03162a
+
