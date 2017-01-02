@@ -12,9 +12,9 @@
   
 **Angular 2 CRUD**
 
-This code is generated using a cli ***(yo angular2-crud)*** with a reference to a file  **<%= modelsName %>** in the root of your project.
+This code is generated using a cli ***(yo angular2-crud)*** with a reference to a file  **<%= dataModel %>** in the root of your project.
 
-The code generated is a complete dashboard to handle (CRUD) the models defined into the **<%= modelsName %>**
+The code generated is a complete dashboard to handle (CRUD) the models defined into the **<%= dataModel %>**
 
 ### Models
 

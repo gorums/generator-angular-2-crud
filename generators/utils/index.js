@@ -10,16 +10,17 @@ pluralize = (entity) => {
 }
 
 module.exports = {
-    getEntitiesName: (models, except) => {
+    getEntities: (models, except) => {
       // get the entities (All the keys of the model json) except
       // no entities like relativeURI
       var entities = Object.keys(_.omit(models, except));
 
-      return entities.reduce((transf, entity) => {
+      return entities.reduce((transf, entityName) => {
           transf.push({
-            'entity': entity,
-            'pluralize': pluralize(entity), //this is using on the route
-            'capitalize': capitalize(entity)
+            'entity': models[entityName],
+            'name': entityName,
+            'pluralize': pluralize(entityName),
+            'capitalize': capitalize(entityName)
           });
 
           return transf;

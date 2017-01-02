@@ -1,2 +1,2 @@
-<% entities.forEach(function (entity) {%>export { <%= entity.capitalize %>Model } from './<%= entity.entity %>';
+<% entities.forEach(function (entity) {%>export { <%= entity.capitalize %>Model } from './<%= entity.name %>';
 <% })%>

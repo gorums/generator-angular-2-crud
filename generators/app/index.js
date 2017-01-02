@@ -37,9 +37,9 @@ module.exports = Generator.extend({
     },
     {
       type: 'input',
-      name: 'models',
-      message: 'Your models.json relative path',
-      default: 'models.json'
+      name: 'dataModel',
+      message: 'Your dataModel relative path',
+      default: 'dataModel.json'
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -52,7 +52,7 @@ module.exports = Generator.extend({
     console.log('after calling readFile');
 
     //try {
-      var models = JSON.parse(fs.readFileSync(this.props.models, 'utf8'));
+      var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
       this.fs.copyTpl(
         this.templatePath('package.json'),
@@ -71,7 +71,7 @@ module.exports = Generator.extend({
           name: this.props.name,
           description: this.props.description,
           version: this.props.version,
-          modelsName: this.props.models,
+          dataModel: this.props.dataModel,
           models: JSON.stringify(models, null, 2)
         }
       );
@@ -148,8 +148,8 @@ module.exports = Generator.extend({
         }
       );
 
-      var entities = utils.getEntitiesName(models, ['relativeURI']);
-      console.log(entities);
+      var entities = utils.getEntities(models, ['relativeURI']);
+
       this.fs.copyTpl(
         this.templatePath('src/app/routes.ts'),
         this.destinationPath('src/app/routes.ts'),
@@ -214,6 +214,25 @@ module.exports = Generator.extend({
         entities: entities
       }
     );
+
+    entities.forEach((entity) => {
+      this.fs.copyTpl(
+        this.templatePath('src/app/models/entity.ts'),
+        this.destinationPath('src/app/models/' + entity.name + '.ts'),
+        {
+          entity: entity
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/services/entity.ts'),
+        this.destinationPath('src/app/services/' + entity.name + '.ts'),
+        {
+          entity: entity,
+          relativeURI: models.relativeURI || ''
+        }
+      );
+    })
     /*}
     catch (errr)
     {
