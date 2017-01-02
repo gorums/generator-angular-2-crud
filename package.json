@@ -47,8 +47,8 @@
   },
   "repository": "gorums/generator-angular-2-crud",
   "scripts": {
-    "prepublish": "gulp prepublish",
-    "test": "gulp"
+    //"test": "gulp",
+    "prepublish": "gulp prepublish"
   },
   "license": "MIT"
 }
