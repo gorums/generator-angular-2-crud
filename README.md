@@ -4,7 +4,7 @@
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-angular-2-crud using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)). Ensure you're running the latest versions Node v4.x.x+ (or v5.x.x) and NPM 3.x.x+
+First, install [Yeoman](http://yeoman.io) and [generator-angular-2-crud][npm-url] using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)). Ensure you're running the latest versions Node v4.x.x+ (or v5.x.x) and NPM 3.x.x+
 
 ```bash
 npm install -g yo
@@ -19,16 +19,16 @@ npm install --global webpack
 npm install --global webpack-dev-server
 ```
  
-## Defined your models.json
+## Model
 
-Access to the project folder and create a file named **models.json**
+Access to the project folder and create a file named **dataModel.json**
 
 ```bash
 mkdir my_new_crud && cd my_new_crud
-touch models.json
+touch dataModel.json
 ```
 
- * Example of models.json
+ * Example of dataModel.json
 
 ```json
  {
@@ -41,7 +41,7 @@ touch models.json
         "id": { "type": "string", "require": "true" },
         "name": { "type": "string", "require": "true" },
         "address": "string",
-        "doctorId": { "referent": "doctor" }
+        "doctorId": { "referent": "doctor", "render": "name" }
     },
     "relativeUrl": "/api"
 }
@@ -49,7 +49,7 @@ touch models.json
 
 ## Generation
 
-Then generate your new project into your project folder with the **models.json** defined:
+Then generate your new project into your project folder with the **dataModel.json** defined:
 
 ```bash
 yo angular-2-crud
