@@ -16,11 +16,13 @@ module.exports = {
       var entities = Object.keys(_.omit(models, except));
 
       return entities.reduce((transf, entityName) => {
+          var plur = pluralize(entityName);
           transf.push({
             'entity': models[entityName],
             'name': entityName,
-            'pluralize': pluralize(entityName),
-            'capitalize': capitalize(entityName)
+            'pluralize': plur,
+            'capitalize': capitalize(entityName),
+            'plurCap': capitalize(plur)
           });
 
           return transf;
