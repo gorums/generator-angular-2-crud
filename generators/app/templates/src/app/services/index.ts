@@ -1,2 +1,2 @@
-export { DoctorService } from './doctor';
-export { UserService } from './user';
+<% entities.forEach(function (entity) {%>export { <%= entity.capitalize %>Service } from './<%= entity.entity %>';
+<% })%>

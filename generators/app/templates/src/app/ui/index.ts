@@ -1,9 +1,6 @@
-﻿export {Doctor} from './doctor/doctor';
-export {DoctorCreate} from './doctor/doctorCreate';
-export {DoctorEdit} from './doctor/doctorEdit';
-export {DoctorDelete} from './doctor/doctorDelete';
-
-export {User} from './user/user';
-export {UserCreate} from './user/userCreate';
-export {UserEdit} from './user/userEdit';
-export {UserDelete} from './user/userDelete';
+﻿<% entities.forEach(function (entity) {%>
+export { <%= entity.capitalize %> } from './<%= entity.entity %>/<%= entity.entity %>';
+export { <%= entity.capitalize %>Create } from './<%= entity.entity %>/<%= entity.entity %>Create';
+export { <%= entity.capitalize %>Edit } from './<%= entity.entity %>/<%= entity.entity %>Edit';
+export { <%= entity.capitalize %>Delete } from './<%= entity.entity %>/<%= entity.entity %>Delete';
+<% })%>

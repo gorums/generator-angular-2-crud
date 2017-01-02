@@ -1,2 +1,2 @@
-export { DoctorModel } from './doctor';
-export { UserModel } from './user';
+<% entities.forEach(function (entity) {%>export { <%= entity.capitalize %>Model } from './<%= entity.entity %>';
+<% })%>

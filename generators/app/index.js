@@ -195,7 +195,7 @@ module.exports = Generator.extend({
         this.templatePath('src/app/models/index.ts'),
         this.destinationPath('src/app/models/index.ts'),
         {
-          models: this.props.models
+          entities: entities
         }
       );
 
@@ -203,9 +203,17 @@ module.exports = Generator.extend({
         this.templatePath('src/app/services/index.ts'),
         this.destinationPath('src/app/services/index.ts'),
         {
-          models: this.props.models
+          entities: entities
         }
       );
+
+    this.fs.copyTpl(
+      this.templatePath('src/app/ui/index.ts'),
+      this.destinationPath('src/app/ui/index.ts'),
+      {
+        entities: entities
+      }
+    );
     /*}
     catch (errr)
     {
