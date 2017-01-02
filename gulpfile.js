@@ -30,10 +30,10 @@ gulp.task('pre-test', function () {
     .pipe(istanbul.hookRequire());
 });
 
-gulp.task('test', ['pre-test'], function (cb) {
+/*gulp.task('test', ['pre-test'], function (cb) {
   var mochaErr;
 
-  gulp.src('test/**/*.js')
+  gulp.src('test/** /*.js')
     .pipe(plumber())
     .pipe(mocha({reporter: 'spec'}))
     .on('error', function (err) {
@@ -43,7 +43,7 @@ gulp.task('test', ['pre-test'], function (cb) {
     .on('end', function () {
       cb(mochaErr);
     });
-});
+});*/
 
 gulp.task('watch', function () {
   gulp.watch(['generators/**/*.js', 'test/**'], ['test']);
@@ -59,4 +59,4 @@ gulp.task('watch', function () {
 });*/
 
 gulp.task('prepublish', ['nsp']);
-gulp.task('default', ['static', 'test'/*, 'coveralls'*/]);
+gulp.task('default', ['static'/*, 'test', 'coveralls'*/]);
