@@ -29,6 +29,13 @@ module.exports = {
       }, []);
     },
     getRelations: (entity, entities) => {
-      return [];
+      var referent;
+      Object.keys(entity.entity).forEach((field) => {
+        if (entity.entity[field].referent) {
+          referent = entity.entity[field].referent;
+        }
+      });
+
+      return referent && entities.filter((e) => e.name === referent);
     }
 }

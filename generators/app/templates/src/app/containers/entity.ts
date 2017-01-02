@@ -1,6 +1,10 @@
 ﻿import { Component } from '@angular/core';
 import { UserModel, DoctorModel } from '../models';
-import { UserService, DoctorService } from '../services';
+import {
+  DoctorService,
+  <%= entity.capitalize %>Service
+} from '../services';
+
 import { Store } from '../store';
 import 'rxjs/Rx';
 
