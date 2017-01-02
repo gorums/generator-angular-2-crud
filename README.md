@@ -43,7 +43,7 @@ touch dataModel.json
         "address": "string",
         "doctorId": { "referent": "doctor", "render": "name" }
     },
-    "relativeUrl": "/api"
+    "relativeURI": "/api"
 }
  ```
 
