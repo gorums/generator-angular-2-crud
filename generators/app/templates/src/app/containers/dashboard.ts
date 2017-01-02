@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'dashboard-container', 
+    selector: 'dashboard-container',
     styles: [`
         .sidebar {
             background: #225079;
@@ -12,7 +12,7 @@ import { Component } from '@angular/core';
             padding-top: 10px;
             text-align: justify;
         }
-    `],  
+    `],
     template: `
        <div class="container">
         <div class="row">
@@ -20,12 +20,11 @@ import { Component } from '@angular/core';
                 <h1 class="text-center">Dashboard</h1>
                 <hr />
                 <ul class="nav nav-pills nav-stacked">
+                    <% entities.forEach(function (entity) {%>
                     <li>
-                        <a><div [routerLink]="['', 'doctors']">Doctors</div></a>
+                        <a><div [routerLink]="['', '<%= entity.pluralize %>']"><%= entity.plurCap %></div></a>
                     </li>
-                    <li>
-                        <a><div [routerLink]="['', 'users']">Users</div></a>
-                    </li>
+                    <% })%>
                 </ul>
             </div>
             <div class="col-xs-9">

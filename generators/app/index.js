@@ -184,6 +184,14 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
+        this.templatePath('src/app/containers/dashboard.ts'),
+        this.destinationPath('src/app/containers/dashboard.ts'),
+        {
+          entities: entities
+        }
+      );
+
+      this.fs.copyTpl(
         this.templatePath('src/app/containers/index.ts'),
         this.destinationPath('src/app/containers/index.ts'),
         {
