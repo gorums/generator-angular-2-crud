@@ -3,6 +3,7 @@ var Generator = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var fs = require('fs');
+var utils = require('../utils');
 
 module.exports = Generator.extend({
   prompting: function () {
@@ -147,11 +148,13 @@ module.exports = Generator.extend({
         }
       );
 
+      var entities = utils.getEntitiesName(models, ['relativeURI']);
+      console.log(entities);
       this.fs.copyTpl(
         this.templatePath('src/app/routes.ts'),
         this.destinationPath('src/app/routes.ts'),
         {
-          models: this.props.models
+          entities: entities
         }
       );
 
@@ -166,6 +169,11 @@ module.exports = Generator.extend({
         this.templatePath('src/app/store/index.ts'),
         this.destinationPath('src/app/store/index.ts')
       );
+
+    this.fs.copy(
+      this.templatePath('src/app/containers/home.ts'),
+      this.destinationPath('src/app/containers/home.ts')
+    );
 
       this.fs.copyTpl(
         this.templatePath('src/app/store/state.ts'),

@@ -1,10 +1,10 @@
 import { RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core' 
-import { 
-    DashboardContainer, 
-    HomeContainer, 
-    DoctorsContainer, 
-    UsersContainer 
+import { ModuleWithProviders } from '@angular/core'
+import {
+    <% entities.forEach(function (entity) {%><%= entity.capitalize %>Container,
+    <% })%>
+    DashboardContainer,
+    HomeContainer
 } from './containers';
 
 export const routes: ModuleWithProviders = RouterModule.forRoot([
@@ -12,9 +12,9 @@ export const routes: ModuleWithProviders = RouterModule.forRoot([
     path: '',
     component: DashboardContainer,
     children: [
-        { path: '', component: HomeContainer },
-        { path: 'doctors', component: DoctorsContainer },
-        { path: 'users', component: UsersContainer }
+        <% entities.forEach(function (entity) {%>{ path: '<%= entity.pluralize %>', component: <%= entity.capitalize %>Container },
+        <% })%>
+        { path: '', component: HomeContainer }
     ]
   },
   { path: '**', redirectTo: '' }
