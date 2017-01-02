@@ -240,6 +240,53 @@ module.exports = Generator.extend({
           relativeURI: models.relativeURI || ''
         }
       );
+
+      var relations = utils.getRelations(entity, entities);
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/containers/entity.ts'),
+        this.destinationPath('src/app/containers/' + entity.name + '.ts'),
+        {
+          entity: entity,
+          relations: relations
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/ui/entity.ts'),
+        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'.ts'),
+        {
+          entity: entity,
+          relations: relations
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/ui/entityCreate.ts'),
+        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Create.ts'),
+        {
+          entity: entity,
+          relations: relations
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/ui/entityDelete.ts'),
+        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Delete.ts'),
+        {
+          entity: entity,
+          relations: relations
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/app/ui/entityEdit.ts'),
+        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Edit.ts'),
+        {
+          entity: entity,
+          relations: relations
+        }
+      );
     })
     /*}
     catch (errr)

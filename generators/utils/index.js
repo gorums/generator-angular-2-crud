@@ -27,5 +27,8 @@ module.exports = {
 
           return transf;
       }, []);
+    },
+    getRelations: (entity, entities) => {
+      return [];
     }
 }
