@@ -5,7 +5,7 @@
 import {UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: '[user-edit-ui]',
+    selector: '[<%= entity.name %>-edit-ui]',
     template: `
         <button class="btn btn-default" data-toggle="modal" [attr.data-target]="'#modelEdit-' + user.id">Edit</button>
         
@@ -17,7 +17,7 @@ import {UserModel, DoctorModel } from '../../models';
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Edit User</h4>
+                        <h4 class="modal-title" id="myModalLabel">Edit <%= entity.capitalize %></h4>
                     </div>
                     <div class="modal-body">
                         <form>
@@ -58,25 +58,25 @@ import {UserModel, DoctorModel } from '../../models';
         </div>       
     `
 })
-export class UserEdit  implements OnInit {
-    @Input() user: UserModel;
+export class <%= entity.capitalize %>Edit  implements OnInit {
+    @Input() <%= entity.name %>: <%= entity.capitalize %>Model;
     @Input() doctors: DoctorModel[];
-    
+
     @Output() onEditHandler = new EventEmitter();
 
-    editUser: UserModel;
+    edit<%= entity.capitalize %>: <%= entity.capitalize %>Model;
 
     ngOnInit() {
         // clone the user object
-        this.editUser = { 
-            id: '', 
-            name: this.user.name, 
-            address: this.user.address, 
+        this.edit<%= entity.capitalize %> = {
+            id: '',
+            name: this.user.name,
+            address: this.user.address,
             doctorId: this.user.doctorId
-        };      
+        };
     }
 
     onSave() {
-        this.onEditHandler.next({id: this.user.id, user: this.editUser});
+        this.onEditHandler.next({id: this.<%= entity.name %>.id, <%= entity.name %>: this.edit<%= entity.capitalize %>});
     }
 }

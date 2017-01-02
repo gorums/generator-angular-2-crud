@@ -2,10 +2,10 @@
     Component, Input, Output, EventEmitter
 } from '@angular/core';
 
-import {UserModel} from '../../models';
+import { <%= entity.capitalize %>Model } from '../../models';
 
 @Component({
-    selector: '[user-delete-ui]',
+    selector: '[<%= entity.name %>-delete-ui]',
     template: `
         <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + user.id">Delete</button> 
         
@@ -17,10 +17,10 @@ import {UserModel} from '../../models';
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Delete User</h4>
+                        <h4 class="modal-title" id="myModalLabel">Delete <%= entity.capitalize %></h4>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure to delete this User?</p>
+                        <p>Are you sure to delete this <%= entity.capitalize %>?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -31,11 +31,11 @@ import {UserModel} from '../../models';
         </div>  
     `
 })
-export class UserDelete {
-    @Input() user: UserModel;
+export class <%= entity.capitalize %>Delete {
+    @Input() <%= entity.name %>: <%= entity.capitalize %>Model;
     @Output() onDeleteHandler = new EventEmitter();
 
     onDelete() {
-        this.onDeleteHandler.next(this.user.id);
+        this.onDeleteHandler.next(this.<%= entity.name %>.id);
     }
 }

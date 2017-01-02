@@ -5,19 +5,19 @@ import { Store } from '../store';
 import 'rxjs/Rx';
 
 @Component({
-    selector: 'users-container',
+    selector: '<%= entity.pluralize %>-container',
     styles: [`
-        .new-user {
+        .new-<%= entity.name %> {
             padding-top: 10px;
         }
-    `],    
+    `],
     template: `
     <div>
-        <h1>Users</h1>                    
-            <user-create-ui 
+        <h1><%= entity.plurCap %></h1>                    
+            <<%= entity.name %>-create-ui 
                 [doctors]="doctors"
-                (onSaveHandler)="onCreateUser($event)" >
-            </user-create-ui>
+                (onSaveHandler)="onCreateU<%= entity.capitalize %>($event)" >
+            </<%= entity.name %>-create-ui>
     </div>
     <table class="table">
         <thead>
@@ -31,12 +31,12 @@ import 'rxjs/Rx';
             </tr>
         </thead>
         <tbody>
-            <tr user-ui *ngFor="let user of users" 
-                [user]="user" 
+            <tr <%= entity.name %>-ui *ngFor="let <%= entity.name %> of <%= entity.pluralize %>" 
+                [<%= entity.name %>]="<%= entity.name %>" 
                 [doctor]="getDoctor(user.doctorId)"
                 [doctors]="doctors"
-                (onEditHandler)="onEditUser($event)"
-                (onDeleteHandler)="onDeleteUser($event)"
+                (onEditHandler)="onEdit<%= entity.capitalize %>($event)"
+                (onDeleteHandler)="onDelete<%= entity.capitalize %>$event)"
             >
             </tr>
         </tbody>
@@ -44,36 +44,37 @@ import 'rxjs/Rx';
         
     `
 })
-export class UsersContainer {   
-    users: UserModel[] = [];
-    doctors: DoctorModel[] = [];
-    
-  constructor(private store: Store, private userService: UserService,
+export class <%= entity.capitalize %>Container {
+  <%= entity.pluralize %>: <%= entity.capitalize %>Model[] = [];
+  doctors: DoctorModel[] = [];
+
+  constructor(private store: Store,
+              private <%= entity.name %>Service: <%= entity.capitalize %>Service,
               private doctorService: DoctorService) {
 
         this.doctorService.getDoctors()
             .subscribe();
 
-        this.userService.getUsers()
-                .subscribe();    
+        this.<%= entity.plurnamealize %>Service.getU<%= entity.plurCap %>()
+                .subscribe();
 
         this.store.changes.pluck('doctors')
             .subscribe((doctors: any) => this.doctors = doctors );
 
-        this.store.changes.pluck('users')
-            .subscribe((users: any) => this.users = users );
+        this.store.changes.pluck('<%= entity.pluralize %>')
+            .subscribe((<%= entity.pluralize %>: any) => this.<%= entity.pluralize %> = <%= entity.pluralize %> );
     }
 
-    onCreateUser(user: UserModel) {
-        this.userService.createUser(user).subscribe();
+    onCreate<%= entity.capitalize %>(<%= entity.name %>: <%= entity.capitalize %>Model) {
+        this.<%= entity.name %>Service.create<%= entity.capitalize %>(<%= entity.name %>).subscribe();
     }
 
-    onEditUser(payload) {
-        this.userService.editUser(payload.id, payload.user).subscribe();
+    onEdit<%= entity.capitalize %>(payload) {
+        this.<%= entity.name %>Service.edit<%= entity.capitalize %>(payload.id, payload.<%= entity.name %>).subscribe();
     }
 
-    onDeleteUser(id: string) {
-        this.userService.deleteUser(id).subscribe();
+    onDelete<%= entity.capitalize %>(id: string) {
+        this.<%= entity.name %>Service.delete<%= entity.capitalize %>(id).subscribe();
     }
 
     getDoctor(doctorId: string): DoctorModel {

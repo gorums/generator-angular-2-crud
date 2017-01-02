@@ -8,37 +8,37 @@
 import { UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: '[user-ui]',
+    selector: '[<%= entity.name %>-ui]',
     template: `
         <th scope="row">{{user.id}}</th>
         <td>{{user.name}}</td>
         <td>{{user.address}}</td>
         <td *ngIf="doctor">{{doctor.name || "No Doctor"}}</td> 
         <td *ngIf="!doctor"></td>
-        <td user-edit-ui 
-                [user]="user" 
+        <td <%= entity.name %>-edit-ui 
+                [<%= entity.name %>]="<%= entity.name %>" 
                 [doctors]="doctors"
-                (onEditHandler)="onEditUser($event)">
+                (onEditHandler)="onEdit<%= entity.capitalize %>($event)">
         </td>
-        <td user-delete-ui 
-            [user]="user"
-            (onDeleteHandler)="onDeleteUser($event)">
+        <td <%= entity.name %>-delete-ui 
+            [<%= entity.name %>]="<%= entity.name %>"
+            (onDeleteHandler)="onDelete<%= entity.capitalize %>($event)">
         </td>
     `
 })
-export class User {
-    @Input() user: UserModel;
+export class <%= entity.capitalize %> {
+    @Input() <%= entity.name %>: <%= entity.capitalize %>Model;
     @Input() doctor: DoctorModel;
     @Input() doctors: Array<DoctorModel>;
 
     @Output() onEditHandler = new EventEmitter();
-    @Output() onDeleteHandler = new EventEmitter();    
+    @Output() onDeleteHandler = new EventEmitter();
 
-    onEditUser(data) {
+    onEdit<%= entity.capitalize %>(data) {
         this.onEditHandler.next(data);
     }
 
-    onDeleteUser() {
-        this.onDeleteHandler.next(this.user.id);
-    }   
+    onDelete<%= entity.capitalize %>() {
+        this.onDeleteHandler.next(this.<%= entity.name %>.id);
+    }
 }

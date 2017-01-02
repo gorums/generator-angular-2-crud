@@ -5,10 +5,10 @@
 import { UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: 'user-create-ui',
+    selector: '<%= entity.name %>-create-ui',
     template: `
         <div>
-            <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New User</button></div>
+            <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New <%= entity.capitalize %></button></div>
             <form *ngIf="addNew">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Name</label>
@@ -37,11 +37,11 @@ import { UserModel, DoctorModel } from '../../models';
        <hr />       
     `
 })
-export class UserCreate {
+export class <%= entity.capitalize %>Create {
     @Input() doctors: Array<DoctorModel>;
     @Output() onSaveHandler = new EventEmitter();
 
-    user: UserModel = {id: '', name: ''};
+    <%= entity.name %>: <%= entity.capitalize %>Model = {id: '', name: ''};
     addNew: boolean = false;
 
     onAddNew() {
@@ -55,11 +55,11 @@ export class UserCreate {
 
     onSave() {
         this.addNew = false;
-        this.onSaveHandler.next(this.user);
-        this.reset();       
+        this.onSaveHandler.next(this.<%= entity.name %>);
+        this.reset();
     }
 
     reset() {
-        this.user = {id: '', name: ''};
+        this.<%= entity.name %> = {id: '', name: ''};
     }
 }
