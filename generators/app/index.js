@@ -179,7 +179,7 @@ module.exports = Generator.extend({
         this.templatePath('src/app/store/state.ts'),
         this.destinationPath('src/app/store/state.ts'),
         {
-          models: this.props.models
+          entities: entities
         }
       );
 

@@ -1,11 +1,14 @@
-import {UserModel, DoctorModel}  from '../models';
+import {
+  <% entities.forEach(function (entity) {%><%= entity.capitalize %>Model,
+  <% })%>
+}  from '../models';
 
 export interface State {
-  users: Array<UserModel>
-  doctors: Array<DoctorModel>
+  <% entities.forEach(function (entity) {%><%= entity.pluralize %>: Array<<%= entity.capitalize %>Model>
+  <% })%>
 }
 
 export const defaultState = {
-  users: [],
-  doctors: []
+  <% entities.forEach(function (entity) {%><%= entity.pluralize %>: [],
+  <% })%>
 }
