@@ -187,7 +187,7 @@ module.exports = Generator.extend({
         this.templatePath('src/app/containers/index.ts'),
         this.destinationPath('src/app/containers/index.ts'),
         {
-          models: this.props.models
+          entities: entities
         }
       );
 

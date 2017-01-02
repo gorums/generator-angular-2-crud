@@ -17,6 +17,7 @@ module.exports = {
 
       return entities.reduce((transf, entity) => {
           transf.push({
+            'entity': entity,
             'pluralize': pluralize(entity), //this is using on the route
             'capitalize': capitalize(entity)
           });
