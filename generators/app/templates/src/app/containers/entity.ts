@@ -1,5 +1,8 @@
 ﻿import { Component } from '@angular/core';
-import { UserModel, DoctorModel } from '../models';
+import {
+  <% if(relations) {%><% relations.forEach(function (relation) {%><%= relation.capitalize %>Model,<% })%><% }%>
+  <%= entity.capitalize %>Model
+} from '../models';
 import {
   <% if(relations) {%><% relations.forEach(function (relation) {%><%= relation.capitalize %>Service,<% })%><% }%>
   <%= entity.capitalize %>Service
@@ -22,7 +25,7 @@ import 'rxjs/Rx';
     <table class="table">
         <thead>
             <tr>
-            <% Object.keys(entity.entity).forEach(function(field) {%><th><%= field %></th>
+            <% Object.keys(entity.entity).forEach(function(field) {%><th><% if(entity.entity[field].referent ) {%><%= entity.entity[field].referent %> <%= entity.entity[field].render %><%} else {%><%= field %><%}%></th>
             <%}) %>
             <th>Edit</th>
             <th>Delete</th>
@@ -75,6 +78,6 @@ export class <%= entity.capitalize %>Container {
   }
 
   <% if(relations) {%><% relations.forEach(function (relation) {%>get<%= relation.singularCapitalize %>(id: string): <%= relation.capitalize %>Model {
-    return this.<%= relation.pluralizeUncapitalize %>.find(f => f.id === id );
+    return this.<%= relation.pluralizeUncapitalize %>.find(f => f.<%= entity.key %> === id );
   } <% })%><% }%>
 }

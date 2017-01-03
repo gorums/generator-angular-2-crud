@@ -17,14 +17,14 @@ export class <%= entity.capitalize %>Service {
                 .do((res: any) => this.storeHelper.update('<%= entity.pluralizeUncapitalize %>', res.data));
     }
 
-    get<%= entity.capitalize %>(id) {
+    get<%= entity.singularCapitalize %>(id) {
         return this.apiService.get(`${this.path}/${id}`)
                 .do(<%= entity.singularUncapitalize %> => this.storeHelper.findAndUpdate('<%= entity.pluralizeUncapitalize %>', <%= entity.singularUncapitalize %>));
     }
 
     create<%= entity.capitalize %>(<%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model) {
         return this.apiService.post(this.path, <%= entity.singularUncapitalize %>)
-                .do(saved<%= entity.singularCapitalize %>=> this.storeHelper.add('<%= entity.pluralizeUncapitalize %>', saved<%= entity.singularCapitalize %>);
+                .do(saved<%= entity.singularCapitalize %>=> this.storeHelper.add('<%= entity.pluralizeUncapitalize %>', saved<%= entity.singularCapitalize %>));
     }
 
     edit<%= entity.capitalize %>(id: string, <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model) {

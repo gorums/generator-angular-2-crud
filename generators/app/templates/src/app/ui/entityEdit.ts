@@ -2,7 +2,10 @@
     Component, Output, Input, EventEmitter, OnInit
 } from '@angular/core'
 
-import {UserModel, DoctorModel } from '../../models';
+import {
+  <% if(relations) {%><% relations.forEach(function (relation) {%><%= relation.capitalize %>Model,<% })%><% }%>
+  <%= entity.capitalize %>Model
+} from '../../models';
 
 @Component({
     selector: '[<%= entity.singularUncapitalize %>-edit-ui]',
@@ -25,7 +28,7 @@ import {UserModel, DoctorModel } from '../../models';
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><%= field %></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" <%if(entity.entity[field].key) { %>disabled <%}%> [ngModel]="<%= entity.singularUncapitalize %>.<%= field %>" name="<%= field %>"/>
+                                    <input type="text" class="form-control" <%if(entity.entity[field].key) { %>disabled [ngModel]="<%= entity.singularUncapitalize %><%} else {%>[(ngModel)]="edit<%= entity.singularCapitalize %><%}%>.<%= field %>" name="<%= field %>"/>
                                 </div>
                             </div>
                             <%} }) %> 

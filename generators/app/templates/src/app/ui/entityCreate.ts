@@ -2,7 +2,10 @@
     Component, Output, Input, EventEmitter
 } from '@angular/core';
 
-import { UserModel, DoctorModel } from '../../models';
+import {
+  <% if(relations) {%><% relations.forEach(function (relation) {%><%= relation.capitalize %>Model,<% })%><% }%>
+  <%= entity.capitalize %>Model
+} from '../../models';
 
 @Component({
     selector: '<%= entity.singularUncapitalize %>-create-ui',

@@ -165,15 +165,18 @@ module.exports = Generator.extend({
         this.destinationPath('src/app/store/helper.ts')
       );
 
-      this.fs.copy(
+      this.fs.copyTpl(
         this.templatePath('src/app/store/index.ts'),
-        this.destinationPath('src/app/store/index.ts')
+        this.destinationPath('src/app/store/index.ts'),
+        {
+          entities: entities
+        }
       );
 
-    this.fs.copy(
-      this.templatePath('src/app/containers/home.ts'),
-      this.destinationPath('src/app/containers/home.ts')
-    );
+      this.fs.copy(
+        this.templatePath('src/app/containers/home.ts'),
+        this.destinationPath('src/app/containers/home.ts')
+      );
 
       this.fs.copyTpl(
         this.templatePath('src/app/store/state.ts'),
