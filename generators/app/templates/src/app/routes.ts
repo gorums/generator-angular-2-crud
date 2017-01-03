@@ -12,8 +12,7 @@ export const routes: ModuleWithProviders = RouterModule.forRoot([
     path: '',
     component: DashboardContainer,
     children: [
-        <% entities.forEach(function (entity) {%>{ path: '<%= entity.pluralize %>', component: <%= entity.capitalize %>Container },
-        <% })%>
+        <% entities.forEach(function (entity) {%>{ path: '<%= entity.pluralizeUncapitalize %>', component: <%= entity.capitalize %>Container },<% })%>
         { path: '', component: HomeContainer }
     ]
   },

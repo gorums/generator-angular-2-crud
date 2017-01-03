@@ -226,7 +226,7 @@ module.exports = Generator.extend({
     entities.forEach((entity) => {
       this.fs.copyTpl(
         this.templatePath('src/app/models/entity.ts'),
-        this.destinationPath('src/app/models/' + entity.name + '.ts'),
+        this.destinationPath('src/app/models/' + entity.uncapitalize + '.ts'),
         {
           entity: entity
         }
@@ -234,7 +234,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/services/entity.ts'),
-        this.destinationPath('src/app/services/' + entity.name + '.ts'),
+        this.destinationPath('src/app/services/' + entity.uncapitalize + '.ts'),
         {
           entity: entity,
           relativeURI: models.relativeURI || ''
@@ -246,7 +246,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/containers/entity.ts'),
-        this.destinationPath('src/app/containers/' + entity.name + '.ts'),
+        this.destinationPath('src/app/containers/' + entity.uncapitalize + '.ts'),
         {
           entity: entity,
           relations: relations
@@ -255,7 +255,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/ui/entity.ts'),
-        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'.ts'),
+        this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'.ts'),
         {
           entity: entity,
           relations: relations
@@ -264,7 +264,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/ui/entityCreate.ts'),
-        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Create.ts'),
+        this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Create.ts'),
         {
           entity: entity,
           relations: relations
@@ -273,7 +273,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/ui/entityDelete.ts'),
-        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Delete.ts'),
+        this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Delete.ts'),
         {
           entity: entity,
           relations: relations
@@ -282,7 +282,7 @@ module.exports = Generator.extend({
 
       this.fs.copyTpl(
         this.templatePath('src/app/ui/entityEdit.ts'),
-        this.destinationPath('src/app/ui/' + entity.name + '/' + entity.name +'Edit.ts'),
+        this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Edit.ts'),
         {
           entity: entity,
           relations: relations

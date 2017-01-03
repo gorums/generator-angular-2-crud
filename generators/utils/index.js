@@ -5,8 +5,16 @@ capitalize = (entity) => {
   return entity.charAt(0).toUpperCase() + entity.slice(1);
 }
 
+uncapitalize = (entity) => {
+  return entity.charAt(0).toLowerCase() + entity.slice(1);
+}
+
 pluralize = (entity) => {
   return p.plural(entity);
+}
+
+singular = (entity) => {
+  return p.singular(entity);
 }
 
 module.exports = {
@@ -16,13 +24,23 @@ module.exports = {
       var entities = Object.keys(_.omit(models, except));
 
       return entities.reduce((transf, entityName) => {
-          var plur = pluralize(entityName);
+          var p = pluralize(entityName);
+          var s = singular(entityName);
+
           transf.push({
             'entity': models[entityName],
+
             'name': entityName,
-            'pluralize': plur,
             'capitalize': capitalize(entityName),
-            'plurCap': capitalize(plur)
+            'uncapitalize': uncapitalize(entityName),
+
+            'singular': s,
+            'singularUncapitalize': uncapitalize(s),
+            'singularCapitalize': capitalize(s),
+
+            'pluralize': p,
+            'pluralizeUncapitalize': uncapitalize(p),
+            'pluralizeCapitalize': capitalize(p)
           });
 
           return transf;

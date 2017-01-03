@@ -4,11 +4,11 @@ import {
 }  from '../models';
 
 export interface State {
-  <% entities.forEach(function (entity) {%><%= entity.pluralize %>: Array<<%= entity.capitalize %>Model>
+  <% entities.forEach(function (entity) {%><%= entity.pluralizeUncapitalize %>: Array<<%= entity.capitalize %>Model>
   <% })%>
 }
 
 export const defaultState = {
-  <% entities.forEach(function (entity) {%><%= entity.pluralize %>: [],
+  <% entities.forEach(function (entity) {%><%= entity.pluralizeUncapitalize %>: [],
   <% })%>
 }
