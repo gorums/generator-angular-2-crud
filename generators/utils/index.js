@@ -1,20 +1,24 @@
 var _ = require('lodash');
 var p = require('pluralize')
 
-capitalize = (entity) => {
-  return entity.charAt(0).toUpperCase() + entity.slice(1);
+capitalize = (entityName) => {
+  return entityName.charAt(0).toUpperCase() + entityName.slice(1);
 }
 
-uncapitalize = (entity) => {
-  return entity.charAt(0).toLowerCase() + entity.slice(1);
+uncapitalize = (entityName) => {
+  return entityName.charAt(0).toLowerCase() + entityName.slice(1);
 }
 
-pluralize = (entity) => {
-  return p.plural(entity);
+pluralize = (entityName) => {
+  return p.plural(entityName);
 }
 
-singular = (entity) => {
-  return p.singular(entity);
+singular = (entityName) => {
+  return p.singular(entityName);
+}
+
+key = (entity) => {
+  return Object.keys(entity).filter((field) => entity[field].key);
 }
 
 module.exports = {
@@ -26,9 +30,11 @@ module.exports = {
       return entities.reduce((transf, entityName) => {
           var p = pluralize(entityName);
           var s = singular(entityName);
+          var k = key(models[entityName]);
 
           transf.push({
             'entity': models[entityName],
+            'key': k,
 
             'name': entityName,
             'capitalize': capitalize(entityName),

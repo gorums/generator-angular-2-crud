@@ -41,6 +41,6 @@ export class <%= entity.capitalize %> {
     }
 
     onDelete<%= entity.capitalize %>() {
-        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.id);
+        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.<%= entity.key %>);
     }
 }

@@ -7,10 +7,10 @@ import { <%= entity.capitalize %>Model } from '../../models';
 @Component({
     selector: '[<%= entity.singularUncapitalize %>-delete-ui]',
     template: `
-        <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + <%= entity.singularUncapitalize %>.id">Delete</button> 
+        <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + <%= entity.singularUncapitalize %>.<%= entity.key %>">Delete</button> 
         
         <!-- Modal -->
-        <div class="modal fade" [id]="'modelDelete-' + <%= entity.singularUncapitalize %>.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" [id]="'modelDelete-' + <%= entity.singularUncapitalize %>.<%= entity.key %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -36,6 +36,6 @@ export class <%= entity.capitalize %>Delete {
     @Output() onDeleteHandler = new EventEmitter();
 
     onDelete() {
-        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.id);
+        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.<%= entity.key %>);
     }
 }

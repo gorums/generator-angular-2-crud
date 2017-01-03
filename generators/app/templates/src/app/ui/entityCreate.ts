@@ -8,7 +8,7 @@ import { UserModel, DoctorModel } from '../../models';
     selector: '<%= entity.singularUncapitalize %>-create-ui',
     template: `
         <div>
-            <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New <%= entity.capitalize %></button></div>
+            <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New <%= entity.singularCapitalize %></button></div>
             <form *ngIf="addNew">
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Name</label>
@@ -38,10 +38,12 @@ import { UserModel, DoctorModel } from '../../models';
     `
 })
 export class <%= entity.capitalize %>Create {
-    @Input() doctors: Array<DoctorModel>;
+    <% if(relations) {%><% relations.forEach(function (relation) {%>
+    @Input() <%= relation.pluralizeUncapitalize %>: Array<<%= relation.capitalize %>Model>;
+    <% })%><% }%>
     @Output() onSaveHandler = new EventEmitter();
 
-    <%= entity.name %>: <%= entity.capitalize %>Model = {id: '', name: ''};
+    <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model = {id: '', name: ''};
     addNew: boolean = false;
 
     onAddNew() {
@@ -55,11 +57,11 @@ export class <%= entity.capitalize %>Create {
 
     onSave() {
         this.addNew = false;
-        this.onSaveHandler.next(this.<%= entity.name %>);
+        this.onSaveHandler.next(this.<%= entity.singularUncapitalize %>);
         this.reset();
     }
 
     reset() {
-        this.<%= entity.name %> = {id: '', name: ''};
+        this.<%= entity.singularUncapitalize %> = {id: '', name: ''};
     }
 }
