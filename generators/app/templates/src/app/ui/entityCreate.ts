@@ -10,26 +10,29 @@ import { UserModel, DoctorModel } from '../../models';
         <div>
             <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New <%= entity.singularCapitalize %></button></div>
             <form *ngIf="addNew">
+                <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && !entity.entity[field].referent) {%>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="user.name" name="name"/>
-                    </div>
+                  <label class="col-sm-2 col-form-label"><%= field %></label>
+                  <div class="col-sm-10">
+                      <input type="text" class="form-control" [(ngModel)]="<%= entity.singularUncapitalize %>.<%= field %>" name="<%= field %>"/>
+                  </div>
                 </div>
+                <%} }) %>                
+                
+                <% if(relations) {%><% relations.forEach(function (relation) {%>
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Address</label>
+                    <label class="col-sm-2 col-form-label"><%= relation.singularCapitalize %></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" [(ngModel)]="user.address" name="address"/>   
-                    </div>
-                </div>  
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Doctor</label>
-                    <div class="col-sm-10">
-                        <select [(ngModel)]="user.doctorId" name="doctorId">
-                            <option *ngFor="let d of doctors" [ngValue]="d.id">{{d.name}}</option>
+                        <% Object.keys(entity.entity).forEach(function(field){ if(entity.entity[field].render && entity.entity[field].referent === relation.name ) { %>
+                        <select [(ngModel)]="<%= entity.singularUncapitalize %>.doctorId" name="<%= field %>">
+                            <option *ngFor="let e of <%= relation.pluralizeUncapitalize %>" [ngValue]="e.<%= relation.key %>">{{e.<%= entity.entity[field].render %>}}</option>
                         </select>  
+                        <% } })%>
                     </div>
-                </div>            
+                </div> 
+                <% })%><% }%>
+                
+                           
                 <button class="btn btn-success" (click)="onSave()">Save</button>
                 <button class="btn btn-default" (click)="onCancel()">Cancel</button>                
             </form>
@@ -43,25 +46,30 @@ export class <%= entity.capitalize %>Create {
     <% })%><% }%>
     @Output() onSaveHandler = new EventEmitter();
 
-    <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model = {id: '', name: ''};
+    <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model = {<%= entity.key %>: ''
+        <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>, <%= field %>: ''
+      <%} }) %>};
+
     addNew: boolean = false;
 
     onAddNew() {
-        this.addNew = true;
+      this.addNew = true;
     }
 
     onCancel() {
-        this.addNew = false;
-        this.reset();
+      this.addNew = false;
+      this.reset();
     }
 
     onSave() {
-        this.addNew = false;
-        this.onSaveHandler.next(this.<%= entity.singularUncapitalize %>);
-        this.reset();
+      this.addNew = false;
+      this.onSaveHandler.next(this.<%= entity.singularUncapitalize %>);
+      this.reset();
     }
 
     reset() {
-        this.<%= entity.singularUncapitalize %> = {id: '', name: ''};
+      this.<%= entity.singularUncapitalize %> = {<%= entity.key %>: ''
+        <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>, <%= field %>: ''
+      <%} }) %>};
     }
 }
