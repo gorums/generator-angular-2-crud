@@ -24,7 +24,7 @@ import { UserModel, DoctorModel } from '../../models';
                     <label class="col-sm-2 col-form-label"><%= relation.singularCapitalize %></label>
                     <div class="col-sm-10">
                         <% Object.keys(entity.entity).forEach(function(field){ if(entity.entity[field].render && entity.entity[field].referent === relation.name ) { %>
-                        <select [(ngModel)]="<%= entity.singularUncapitalize %>.doctorId" name="<%= field %>">
+                        <select [(ngModel)]="<%= entity.singularUncapitalize %>.<%= field %>" name="<%= field %>">
                             <option *ngFor="let e of <%= relation.pluralizeUncapitalize %>" [ngValue]="e.<%= relation.key %>">{{e.<%= entity.entity[field].render %>}}</option>
                         </select>  
                         <% } })%>
@@ -46,9 +46,10 @@ export class <%= entity.capitalize %>Create {
     <% })%><% }%>
     @Output() onSaveHandler = new EventEmitter();
 
-    <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model = {<%= entity.key %>: ''
-        <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>, <%= field %>: ''
-      <%} }) %>};
+    <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model = {
+      <%= entity.key %>: ''<% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>,
+      <%= field %>: ''<%} }) %>
+    };
 
     addNew: boolean = false;
 
@@ -68,8 +69,9 @@ export class <%= entity.capitalize %>Create {
     }
 
     reset() {
-      this.<%= entity.singularUncapitalize %> = {<%= entity.key %>: ''
-        <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>, <%= field %>: ''
-      <%} }) %>};
+      this.<%= entity.singularUncapitalize %> = {
+        <%= entity.key %>: ''<% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key && entity.entity[field].require) {%>,
+        <%= field %>: ''<%} }) %>
+      };
     }
 }
