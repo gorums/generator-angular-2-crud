@@ -33,15 +33,15 @@ touch dataModel.json
 ```json
  {
     "Doctors": {
-        "Id": { "type": "string", "require": "true" },
+        "Id": { "type": "string", "key": "true"},
         "Name": { "type": "string", "require": "true" },
         "Address": "string"
     },
     "Patients": {
-        "Id": { "type": "string", "require": "true" },
+        "Id": { "type": "string", "key": "true" },
         "Name": { "type": "string", "require": "true" },
         "Address": "string",
-        "DoctorId": { "referent": "Doctors", "render": "Name" }
+        "DoctorId": { "type": "string", "referent": "Doctors", "render": "Name" }
     },
     "relativeURI": "/api"
 }
