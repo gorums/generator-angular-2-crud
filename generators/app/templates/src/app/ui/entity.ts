@@ -8,28 +8,30 @@
 import { UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: '[<%= entity.name %>-ui]',
+    selector: '[<%= entity.singularUncapitalize %>-ui]',
     template: `
-        <th scope="row">{{user.id}}</th>
-        <td>{{user.name}}</td>
-        <td>{{user.address}}</td>
-        <td *ngIf="doctor">{{doctor.name || "No Doctor"}}</td> 
-        <td *ngIf="!doctor"></td>
-        <td <%= entity.name %>-edit-ui 
-                [<%= entity.name %>]="<%= entity.name %>" 
-                [doctors]="doctors"
+        <% Object.keys(entity.entity).forEach(function(field){ if(!entity.entity[field].referent) {%><td>{{<%= entity.singularUncapitalize %>.<%= field %>}}</td>
+        <%} })%>        
+        <% if(relations) {%><% relations.forEach(function (relation) {%><% Object.keys(entity.entity).forEach(function(field){ if(entity.entity[field].render) { %>
+        <td *ngIf="<%= relation.singularUncapitalize %>">{{<%= relation.singularUncapitalize %>.<%= entity.entity[field].render %> || "No <%= relation.singularCapitalize %>}}</td><%} })%>
+        <td *ngIf="!<%= relation.singularUncapitalize %>"></td><% })%><% }%>        
+        <td <%= entity.singularUncapitalize %>-edit-ui 
+                [<%= entity.singularUncapitalize %>]="<%= entity.singularUncapitalize %>" 
+                <% if(relations) {relations.forEach(function (relation) {%>[<%= relation.pluralizeUncapitalize %>]="<%= relation.pluralizeUncapitalize %>"<% })%><% }%>
                 (onEditHandler)="onEdit<%= entity.capitalize %>($event)">
         </td>
-        <td <%= entity.name %>-delete-ui 
-            [<%= entity.name %>]="<%= entity.name %>"
+        <td <%= entity.singularUncapitalize %>-delete-ui 
+            [<%= entity.singularUncapitalize %>]="<%= entity.singularUncapitalize %>"
             (onDeleteHandler)="onDelete<%= entity.capitalize %>($event)">
         </td>
     `
 })
 export class <%= entity.capitalize %> {
-    @Input() <%= entity.name %>: <%= entity.capitalize %>Model;
-    @Input() doctor: DoctorModel;
-    @Input() doctors: Array<DoctorModel>;
+    @Input() <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model;
+    <% if(relations) {%><% relations.forEach(function (relation) {%>
+    @Input() <%= relation.singularUncapitalize %>: <%= relation.capitalize %>Model;
+    @Input() <%= relation.pluralizeUncapitalize %>: Array<<%= relation.capitalize %>Model>;
+    <% })%><% }%>
 
     @Output() onEditHandler = new EventEmitter();
     @Output() onDeleteHandler = new EventEmitter();
@@ -39,6 +41,6 @@ export class <%= entity.capitalize %> {
     }
 
     onDelete<%= entity.capitalize %>() {
-        this.onDeleteHandler.next(this.<%= entity.name %>.id);
+        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.id);
     }
 }

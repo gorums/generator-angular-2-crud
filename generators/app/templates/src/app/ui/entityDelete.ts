@@ -5,7 +5,7 @@
 import { <%= entity.capitalize %>Model } from '../../models';
 
 @Component({
-    selector: '[<%= entity.name %>-delete-ui]',
+    selector: '[<%= entity.singularUncapitalize %>-delete-ui]',
     template: `
         <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + <%= entity.singularUncapitalize %>.id">Delete</button> 
         

@@ -5,7 +5,7 @@
 import { UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: '<%= entity.name %>-create-ui',
+    selector: '<%= entity.singularUncapitalize %>-create-ui',
     template: `
         <div>
             <div *ngIf="!addNew"><button class="btn btn-primary" (click)="onAddNew()">Add New <%= entity.capitalize %></button></div>

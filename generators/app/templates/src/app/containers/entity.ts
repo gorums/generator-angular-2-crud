@@ -34,7 +34,7 @@ import 'rxjs/Rx';
                 [<%= entity.singularUncapitalize %>]="<%= entity.singularUncapitalize %>" 
                 <% if(relations) {relations.forEach(function (relation) {%>
                 [<%= relation.pluralizeUncapitalize %>]="<%= relation.pluralizeUncapitalize %>"                
-                [<%= relation.singularUncapitalize %>]="get<%= relation.singularCapitalize %>(<%= entity.singularUncapitalize %>.<% Object.keys(entity.entity).forEach(function(field){if(entity.entity[field].referent && entity.entity[field].referent === relation.name) { %><%= field %>)<%} })%>"<% })%><% }%>                
+                [<%= relation.singularUncapitalize %>]="get<%= relation.singularCapitalize %>(<%= entity.singularUncapitalize %>.<% Object.keys(entity.entity).forEach(function(field){if(entity.entity[field].referent && entity.entity[field].referent === relation.name) { %><%= field %>)"<%} })})%><% }%>                
                 (onEditHandler)="onEdit<%= entity.capitalize %>($event)"
                 (onDeleteHandler)="onDelete<%= entity.capitalize %>($event)"
             >

@@ -5,7 +5,7 @@
 import {UserModel, DoctorModel } from '../../models';
 
 @Component({
-    selector: '[<%= entity.name %>-edit-ui]',
+    selector: '[<%= entity.singularUncapitalize %>-edit-ui]',
     template: `
         <button class="btn btn-default" data-toggle="modal" [attr.data-target]="'#modelEdit-' + user.id">Edit</button>
         
