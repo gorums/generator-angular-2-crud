@@ -7,20 +7,20 @@ import { <%= entity.capitalize %>Model } from '../../models';
 @Component({
     selector: '[<%= entity.name %>-delete-ui]',
     template: `
-        <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + user.id">Delete</button> 
+        <button class="btn btn-danger" data-toggle="modal" [attr.data-target]="'#modelDelete-' + <%= entity.singularUncapitalize %>.id">Delete</button> 
         
         <!-- Modal -->
-        <div class="modal fade" [id]="'modelDelete-' + user.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" [id]="'modelDelete-' + <%= entity.singularUncapitalize %>.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Delete <%= entity.capitalize %></h4>
+                        <h4 class="modal-title" id="myModalLabel">Delete <%= entity.singularCapitalize %></h4>
                     </div>
                     <div class="modal-body">
-                        <p>Are you sure to delete this <%= entity.capitalize %>?</p>
+                        <p>Are you sure to delete this <%= entity.singularCapitalize %>?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -32,10 +32,10 @@ import { <%= entity.capitalize %>Model } from '../../models';
     `
 })
 export class <%= entity.capitalize %>Delete {
-    @Input() <%= entity.name %>: <%= entity.capitalize %>Model;
+    @Input() <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model;
     @Output() onDeleteHandler = new EventEmitter();
 
     onDelete() {
-        this.onDeleteHandler.next(this.<%= entity.name %>.id);
+        this.onDeleteHandler.next(this.<%= entity.singularUncapitalize %>.id);
     }
 }
