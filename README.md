@@ -19,7 +19,7 @@ npm install --global webpack
 npm install --global webpack-dev-server
 ```
  
-## Model
+## DataModel
 
 Access to the project folder and create a file named **dataModel.json**
 
@@ -46,6 +46,12 @@ touch dataModel.json
     "relativeURI": "/api"
 }
  ```
+ 
+ The allow **type** are *string*, *boolean* and *number*
+ 
+ **relativeURI**: define the relative URI. An example using */api* http://127.0.0.1:3000/api/myentity 
+ 
+ without *relativeURI* the URL is going to be http://127.0.0.1:3000/myentity
 
 ## Generation
 
