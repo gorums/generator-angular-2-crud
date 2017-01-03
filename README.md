@@ -41,7 +41,7 @@ touch dataModel.json
         "Id": { "type": "string", "require": "true" },
         "Name": { "type": "string", "require": "true" },
         "Address": "string",
-        "Doctor": { "referent": "doctor", "render": "name" }
+        "DoctorId": { "referent": "Doctors", "render": "Name" }
     },
     "relativeURI": "/api"
 }
