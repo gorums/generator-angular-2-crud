@@ -46,17 +46,17 @@ touch dataModel.json
     "relativeURI": "/api"
 }
  ```
- * **key**: define a field as key
+ * **key**: Define a field as key
  
- * **type**: allow *string*, *boolean* and *number*
+ * **type**: Allow *string*, *boolean* and *number*
  
- * **require**: define a field as require for validation
+ * **require**: Define a field as require for validation
  
- * **referent**: define the relation
+ * **referent**: Define the relation
  
- * **render**: Difine what field show in the relation, in the example above it is going to render Doctors.Name instance of DoctorId
+ * **render**: Define what field show in the relation, in the example above it is going to render Doctors.Name instance of DoctorId
  
- * **relativeURI**: define the relative URI. An example using */api* http://127.0.0.1:3000/api/myentity 
+ * **relativeURI**: Define the relative URI. An example using */api* http://127.0.0.1:3000/api/myentity 
  
  without *relativeURI* the URL is going to be http://127.0.0.1:3000/myentity
 
