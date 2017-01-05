@@ -20,11 +20,11 @@ import { Component } from '@angular/core';
                 <h1 class="text-center">Dashboard</h1>
                 <hr />
                 <ul class="nav nav-pills nav-stacked">
-                    <% entities.forEach(function (entity) {%>
+<% entities.forEach(function (entity) { -%>
                     <li>
                         <a><div [routerLink]="['', '<%= entity.pluralizeUncapitalize %>']"><%= entity.pluralizeCapitalize %></div></a>
                     </li>
-                    <% })%>
+<% }) -%>
                 </ul>
             </div>
             <div class="col-xs-9">

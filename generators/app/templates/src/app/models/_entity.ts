@@ -5,7 +5,8 @@ export interface <%= entity.capitalize %>Model {
   <%= "?" -%>
 <% } -%>
  <%= ":" -%>
- <%= entity.entity[field].type || (entity.entity[field].key && "string") ||
-      (entity.entity[field].referent && "string") || entity.entity[field] -%>;
+ <%= entity.entity[field].type ||
+    (entity.entity[field].key && "string") ||
+    (entity.entity[field].referent && "string") || entity.entity[field] -%>;
 <% }) -%>
 }
