@@ -51,11 +51,11 @@ module.exports = Generator.extend({
   writing: function () {
     console.log('after calling readFile');
 
-    //try {
+    try {
       var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
       this.fs.copyTpl(
-        this.templatePath('package.json'),
+        this.templatePath('_package.json'),
         this.destinationPath('package.json'),
         {
           name: this.props.name,
@@ -65,7 +65,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('README.md'),
+        this.templatePath('_README.md'),
         this.destinationPath('README.md'),
         {
           name: this.props.name,
@@ -79,44 +79,44 @@ module.exports = Generator.extend({
       // *
 
       this.fs.copy(
-        this.templatePath('tsconfig.json'),
+        this.templatePath('_tsconfig.json'),
         this.destinationPath('tsconfig.json')
       );
 
       this.fs.copy(
-        this.templatePath('tslint.json'),
+        this.templatePath('_tslint.json'),
         this.destinationPath('tslint.json')
       );
 
       this.fs.copy(
-        this.templatePath('webpack.config.js'),
+        this.templatePath('_webpack.config.js'),
         this.destinationPath('webpack.config.js')
       );
 
       //src/*
 
       this.fs.copy(
-        this.templatePath('src/global.css'),
+        this.templatePath('src/_global.css'),
         this.destinationPath('src/global.css')
       );
 
       this.fs.copy(
-        this.templatePath('src/polyfills.ts'),
+        this.templatePath('src/_polyfills.ts'),
         this.destinationPath('src/polyfills.ts')
       );
 
       this.fs.copy(
-        this.templatePath('src/vendor.ts'),
+        this.templatePath('src/_vendor.ts'),
         this.destinationPath('src/vendor.ts')
       );
 
       this.fs.copy(
-        this.templatePath('src/main.ts'),
+        this.templatePath('src/_main.ts'),
         this.destinationPath('src/main.ts')
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/index.html'),
+        this.templatePath('src/_index.html'),
         this.destinationPath('src/index.html'),
         {
           name: this.props.name
@@ -126,22 +126,22 @@ module.exports = Generator.extend({
       //src/app/*
 
       this.fs.copy(
-        this.templatePath('src/app/api.ts'),
+        this.templatePath('src/app/_api.ts'),
         this.destinationPath('src/app/api.ts')
       );
 
       this.fs.copy(
-        this.templatePath('src/app/app.ts'),
+        this.templatePath('src/app/_app.ts'),
         this.destinationPath('src/app/app.ts')
       );
 
       this.fs.copy(
-        this.templatePath('src/app/index.ts'),
+        this.templatePath('src/app/_index.ts'),
         this.destinationPath('src/app/index.ts')
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/config.ts'),
+        this.templatePath('src/app/_config.ts'),
         this.destinationPath('src/app/config.ts'),
         {
           baseurl: this.props.baseurl
@@ -151,7 +151,7 @@ module.exports = Generator.extend({
       var entities = utils.getEntities(models, ['relativeURI']);
 
       this.fs.copyTpl(
-        this.templatePath('src/app/routes.ts'),
+        this.templatePath('src/app/_routes.ts'),
         this.destinationPath('src/app/routes.ts'),
         {
           entities: entities
@@ -161,12 +161,12 @@ module.exports = Generator.extend({
       //src/app/store/*
 
       this.fs.copy(
-        this.templatePath('src/app/store/helper.ts'),
+        this.templatePath('src/app/store/_helper.ts'),
         this.destinationPath('src/app/store/helper.ts')
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/store/index.ts'),
+        this.templatePath('src/app/store/_index.ts'),
         this.destinationPath('src/app/store/index.ts'),
         {
           entities: entities
@@ -174,12 +174,12 @@ module.exports = Generator.extend({
       );
 
       this.fs.copy(
-        this.templatePath('src/app/containers/home.ts'),
+        this.templatePath('src/app/containers/_home.ts'),
         this.destinationPath('src/app/containers/home.ts')
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/store/state.ts'),
+        this.templatePath('src/app/store/_state.ts'),
         this.destinationPath('src/app/store/state.ts'),
         {
           entities: entities
@@ -187,7 +187,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/containers/dashboard.ts'),
+        this.templatePath('src/app/containers/_dashboard.ts'),
         this.destinationPath('src/app/containers/dashboard.ts'),
         {
           entities: entities
@@ -195,7 +195,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/containers/index.ts'),
+        this.templatePath('src/app/containers/_index.ts'),
         this.destinationPath('src/app/containers/index.ts'),
         {
           entities: entities
@@ -203,7 +203,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/models/index.ts'),
+        this.templatePath('src/app/models/_index.ts'),
         this.destinationPath('src/app/models/index.ts'),
         {
           entities: entities
@@ -211,7 +211,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/services/index.ts'),
+        this.templatePath('src/app/services/_index.ts'),
         this.destinationPath('src/app/services/index.ts'),
         {
           entities: entities
@@ -219,7 +219,7 @@ module.exports = Generator.extend({
       );
 
     this.fs.copyTpl(
-      this.templatePath('src/app/ui/index.ts'),
+      this.templatePath('src/app/ui/_index.ts'),
       this.destinationPath('src/app/ui/index.ts'),
       {
         entities: entities
@@ -228,7 +228,7 @@ module.exports = Generator.extend({
 
     entities.forEach((entity) => {
       this.fs.copyTpl(
-        this.templatePath('src/app/models/entity.ts'),
+        this.templatePath('src/app/models/_entity.ts'),
         this.destinationPath('src/app/models/' + entity.uncapitalize + '.ts'),
         {
           entity: entity
@@ -236,7 +236,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/services/entity.ts'),
+        this.templatePath('src/app/services/_entity.ts'),
         this.destinationPath('src/app/services/' + entity.uncapitalize + '.ts'),
         {
           entity: entity,
@@ -248,7 +248,7 @@ module.exports = Generator.extend({
       console.log(relations);
 
       this.fs.copyTpl(
-        this.templatePath('src/app/containers/entity.ts'),
+        this.templatePath('src/app/containers/_entity.ts'),
         this.destinationPath('src/app/containers/' + entity.uncapitalize + '.ts'),
         {
           entity: entity,
@@ -257,7 +257,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/ui/entity.ts'),
+        this.templatePath('src/app/ui/_entity.ts'),
         this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'.ts'),
         {
           entity: entity,
@@ -266,7 +266,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/ui/entityCreate.ts'),
+        this.templatePath('src/app/ui/_entityCreate.ts'),
         this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Create.ts'),
         {
           entity: entity,
@@ -275,7 +275,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/ui/entityDelete.ts'),
+        this.templatePath('src/app/ui/_entityDelete.ts'),
         this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Delete.ts'),
         {
           entity: entity,
@@ -284,7 +284,7 @@ module.exports = Generator.extend({
       );
 
       this.fs.copyTpl(
-        this.templatePath('src/app/ui/entityEdit.ts'),
+        this.templatePath('src/app/ui/_entityEdit.ts'),
         this.destinationPath('src/app/ui/' + entity.uncapitalize + '/' + entity.uncapitalize +'Edit.ts'),
         {
           entity: entity,
@@ -292,11 +292,11 @@ module.exports = Generator.extend({
         }
       );
     })
-    /*}
+    }
     catch (errr)
     {
       console.log('Error: ' + errr);
-    }*/
+    }
   },
 
   install: function () {
