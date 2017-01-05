@@ -54,7 +54,7 @@ touch dataModel.json
  
  * **referent**: Define the relation
  
- * **render**: Define what field show in the relation, in the example above it is going to render Doctors.Name instance of DoctorId
+ * **render**: Define what field show in the relation, in the example above it is going to render Doctor.Name instance of DoctorId
  
  * **relativeURI**: Define the relative URI. An example using */api* http://127.0.0.1:3000/api/myentity 
  
