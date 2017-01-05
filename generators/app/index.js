@@ -245,7 +245,6 @@ module.exports = Generator.extend({
       );
 
       var relations = utils.getRelations(entity, entities);
-      console.log(relations);
 
       this.fs.copyTpl(
         this.templatePath('src/app/containers/_entity.ts'),
