@@ -3,7 +3,11 @@
 } from '@angular/core'
 
 import {
-  <% if(relations) {%><% relations.forEach(function (relation) {%><%= relation.capitalize %>Model,<% })%><% }%>
+  <% if(relations) { -%>
+<% relations.forEach(function (relation) { -%>
+  <%= relation.capitalize %>Model,
+<% }) -%>
+<% } -%>
   <%= entity.capitalize %>Model
 } from '../../models';
 
@@ -24,26 +28,35 @@ import {
                     </div>
                     <div class="modal-body">
                         <form>
-                            <% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].referent) {%>
+<% Object.keys(entity.entity).forEach(function(field) { -%> 
+<% if(!entity.entity[field].referent) { -%>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><%= field %></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" <%if(entity.entity[field].key) { %>disabled [ngModel]="<%= entity.singularUncapitalize %><%} else {%>[(ngModel)]="edit<%= entity.singularCapitalize %><%}%>.<%= field %>" name="<%= field %>"/>
+                                    <input type="text" class="form-control" 
+<%if(entity.entity[field].key) { -%> 
+                                    disabled [ngModel]="<%= entity.singularUncapitalize -%>
+<%} else { -%>
+                                    [(ngModel)]="edit<%= entity.singularCapitalize -%>
+<%} -%>.<%= field %>" name="<%= field %>"/>
                                 </div>
                             </div>
-                            <%} }) %> 
-                            <% if(relations) {%><% relations.forEach(function (relation) {%>
+<% } -%>
+<% }) -%>
+<% if(relations) {%><% relations.forEach(function (relation) {%>
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><%= relation.singularCapitalize %></label>
                                 <div class="col-sm-10">
-                                    <% Object.keys(entity.entity).forEach(function(field){ if(entity.entity[field].render && entity.entity[field].referent === relation.name ) { %>                        
+<% Object.keys(entity.entity).forEach(function(field){ -%>
+<% if(entity.entity[field].render && entity.entity[field].referent === relation.name ) { -%>                        
                                     <select [(ngModel)]="edit<%= entity.singularCapitalize %>.<%= field %>" name="<%= field %>">
                                         <option *ngFor="let e of <%= relation.pluralizeUncapitalize %>" [ngValue]="e.<%= relation.key %>">{{e.<%= entity.entity[field].render %>}}</option>
                                     </select> 
-                                    <% } })%>
+<% } -%>
+<% }) -%>
                                 </div>
                             </div>    
-                            <% })%><% }%>
+<% })%><% }%>
                         </form> 
                     </div>
                     <div class="modal-footer">
@@ -57,9 +70,11 @@ import {
 })
 export class <%= entity.capitalize %>Edit  implements OnInit {
     @Input() <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model;
-    <% if(relations) {%><% relations.forEach(function (relation) {%>
+<% if(relations) { -%>
+<% relations.forEach(function (relation) { -%>
     @Input() <%= relation.pluralizeUncapitalize %>: Array<<%= relation.capitalize %>Model>;
-    <% })%><% }%>
+<% }) -%>
+<% } -%>
 
     @Output() onEditHandler = new EventEmitter();
 
@@ -68,12 +83,15 @@ export class <%= entity.capitalize %>Edit  implements OnInit {
     ngOnInit() {
       // clone the user object
       this.edit<%= entity.singularCapitalize %> = {
-        <%= entity.key %>: ''<% Object.keys(entity.entity).forEach(function(field) { if(!entity.entity[field].key) {%>,
-        <%= field %>: this.<%= entity.singularUncapitalize %>.<%=field %><%} }) %>
+        <%= entity.key %>: ''<% Object.keys(entity.entity).forEach(function(field) { -%>
+<%if(!entity.entity[field].key) { -%>,
+        <%= field %>: this.<%= entity.singularUncapitalize %>.<%=field %>
+<% } -%>
+<% }) -%>
       };
     }
 
     onSave() {
-        this.onEditHandler.next({id: this.<%= entity.singularUncapitalize %>.<%= entity.key %>, <%= entity.singularUncapitalize %>: this.edit<%= entity.singularCapitalize %>});
+        this.onEditHandler.next({id: this.<%= entity.singularUncapitalize %>.<%= entity.key %>, <%= entity.singularUncapitalize %> : this.edit<%= entity.singularCapitalize %>});
     }
 }
