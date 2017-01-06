@@ -6,11 +6,13 @@ import { Component } from '@angular/core';
         .sidebar {
             background: #225079;
             height: 600px;
-            color: white;            
-        },
-        .model-containers {
-            padding-top: 10px;
-            text-align: justify;
+            color: white;
+        }
+    `, `
+        .route {
+          color: #d9534f;
+          font-size: 18px;
+          font-weight: bold;
         }
     `],
     template: `
@@ -22,7 +24,7 @@ import { Component } from '@angular/core';
                 <ul class="nav nav-pills nav-stacked">
 <% entities.forEach(function (entity) { -%>
                     <li>
-                        <a><div [routerLink]="['', '<%= entity.pluralizeUncapitalize %>']"><%= entity.pluralizeCapitalize %></div></a>
+                        <a class="route"><div [routerLink]="['', '<%= entity.pluralizeUncapitalize %>']"><%= entity.pluralizeCapitalize %></div></aclass>
                     </li>
 <% }) -%>
                 </ul>
