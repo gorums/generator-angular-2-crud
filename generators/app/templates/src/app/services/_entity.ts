@@ -28,7 +28,7 @@ export class <%= entity.capitalize %>Service {
     }
 
     edit<%= entity.capitalize %>(id: string, <%= entity.singularUncapitalize %>: <%= entity.capitalize %>Model) {
-        return this.apiService.patch(`${this.path}/${id}`, <%= entity.singularUncapitalize %>)
+        return this.apiService.put(`${this.path}/${id}`, <%= entity.singularUncapitalize %>)
                  .do(edited<%= entity.singularCapitalize %> => this.storeHelper.findAndUpdate('<%= entity.pluralizeUncapitalize %>', edited<%= entity.singularCapitalize %>));
     }
 

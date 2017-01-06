@@ -45,8 +45,8 @@ export class ApiService {
     .map(this.getJson)
   }
 
-  patch(path: string, body): Observable<any> {
-    return this.http.patch(
+  put(path: string, body): Observable<any> {
+    return this.http.put(
       `${this.api_url}${path}`,
       JSON.stringify(body),
       { headers: this.headers }
