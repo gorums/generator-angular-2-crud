@@ -41,8 +41,16 @@ var <%= entity.pluralizeUncapitalize %> = [
 <% if(entity.entity[field].referent) { -%>
       <%= field %>: <%= entity.relations[field][0].pluralizeUncapitalize %>[<%= i %>].<%= entity.relations[field][0].key %>,
 <%} else { -%>
-      <%= field %>: faker.random.words,
-<% } -%> 
+      <%= field %>: <%  if (entity.entity[field] === "string" || entity.entity[field].type === "string") { -%>
+  faker.random.words(),
+<% } -%>
+<% if (entity.entity[field] === "boolean" || entity.entity[field].type === "boolean") { -%>
+  faker.random.boolean(),
+<% } -%>
+<% if(entity.entity[field] === "number" || entity.entity[field].type === "number") { -%>
+  faker.random.number(),
+<% } -%>
+<% } -%>
 <% } -%>
 <% }) -%>
     },
@@ -65,8 +73,8 @@ app.post('/api/<%= entity.pluralizeUncapitalize %>', function (req, res) {
   res.json(<%= entity.singularUncapitalize %>)
 })
 
-app.put('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {   
-  var doctor = <%= entity.singularUncapitalize %>.find((e) => e.<%= entity.key %> === req.params.id);
+app.put('/api/<%= entity.pluralizeUncapitalize %>/:id', function (req, res) {   
+  var <%= entity.singularUncapitalize %> = <%= entity.pluralizeUncapitalize %>.find((e) => e.<%= entity.key %> === req.params.id);
 <% Object.keys(entity.entity).forEach(function(field) { -%>
 <% if(!entity.entity[field].key) { -%>
   <%= entity.singularUncapitalize %>.<%= field %> = req.body.<%= field %>;
@@ -75,8 +83,8 @@ app.put('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {
   res.json(<%= entity.singularUncapitalize %>);
 })
 
-app.delete('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {  
-  <%= entity.singularUncapitalize %> = <%= entity.singularUncapitalize %>.filter((e) => e.<%= entity.key %> !== req.params.id); 
+app.delete('/api/<%= entity.pluralizeUncapitalize %>/:id', function (req, res) {  
+  <%= entity.pluralizeUncapitalize %> = <%= entity.pluralizeUncapitalize %>.filter((e) => e.<%= entity.key %> !== req.params.id); 
 
   res.json({id: req.params.id})
 })
