@@ -1,6 +1,6 @@
 # generator-angular-2-crud 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> This npm generate a CRUD for Angular 2 using a json model definition
+> This npm generate a CRUD for Angular 2 using a data model definition
 
 ## Installation
 
@@ -78,6 +78,11 @@ npm start
 
 http://127.0.0.1:3000 or http://0.0.0.0:3000
 
+Instance we can generate a server mock in NodeJs/ExpressJs
+
+```bash
+yo angular-2-crud:server
+```
 
 ## License
 
