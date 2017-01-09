@@ -292,8 +292,7 @@ module.exports = Generator.extend({
       );
     })
     }
-    catch (errr)
-    {
+    catch (errr) {
       console.log('Error: ' + errr);
     }
   },

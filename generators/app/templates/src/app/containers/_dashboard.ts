@@ -24,7 +24,7 @@ import { Component } from '@angular/core';
                 <ul class="nav nav-pills nav-stacked">
 <% entities.forEach(function (entity) { -%>
                     <li>
-                        <a class="route"><div [routerLink]="['', '<%= entity.pluralizeUncapitalize %>']"><%= entity.pluralizeCapitalize %></div></aclass>
+                        <a class="route"><div [routerLink]="['', '<%= entity.pluralizeUncapitalize %>']"><%= entity.pluralizeCapitalize %></div></a>
                     </li>
 <% }) -%>
                 </ul>
