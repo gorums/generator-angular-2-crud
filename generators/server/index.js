@@ -1,8 +1,10 @@
 'use strict';
-var Generator = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var utils = require('../utils');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const utils = require('../utils');
+const path = require('path');
+const fs = require('fs');
 
 module.exports = Generator.extend({
   prompting: function () {
@@ -41,27 +43,28 @@ module.exports = Generator.extend({
     try {
       var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
-
+      var entities = utils.getEntities(models, ['relativeURI']);
+      
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('server/package.json')
       );
 
-      var entities = utils.getEntities(models, ['relativeURI']);
-
-      this.fs.copyTpl(
+      /*this.fs.copyTpl(
         this.templatePath('_server.js'),
         this.destinationPath('server/server.js'), {
           entities: entities,
           port: this.props.port
         }
-      );
+      );*/
     } catch (errr) {
       console.log('Error: ' + errr);
-    }     
+    }    
   },
 
   install: function () {
+    var npmdir = process.cwd() + '/server';
+    process.chdir(npmdir);
     this.installDependencies();
   }
 });
