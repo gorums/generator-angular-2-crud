@@ -21,45 +21,66 @@ key = (entity) => {
   return Object.keys(entity).filter((field) => entity[field].key);
 }
 
-module.exports = {
-    getEntities: (models, except) => {
-      // get the entities (All the keys of the model json) except
-      // no entities like relativeURI
-      var entities = Object.keys(_.omit(models, except));
+referent = (entity) => {
+  return Object.keys(entity).filter((field) => entity[field].referent);
+}
 
-      return entities.reduce((transf, entityName) => {
-          var p = pluralize(entityName);
-          var s = singular(entityName);
-          var k = key(models[entityName]);
+getRelations = (entity, entities) => {
+    var referent;
+    Object.keys(entity.entity).forEach((field) => {
+      if (entity.entity[field].referent) {
+        referent = entity.entity[field].referent;
+      }
+    });
 
-          transf.push({
-            'entity': models[entityName],
-            'key': k,
+    return referent && entities.filter((e) => e.name === referent);
+  }
 
-            'name': entityName,
-            'capitalize': capitalize(entityName),
-            'uncapitalize': uncapitalize(entityName),
+getEntities = (models, except) => {
+  // get the entities (All the keys of the model json) except
+  // no entities like relativeURI
+  var entities = Object.keys(_.omit(models, except));
 
-            'singular': s,
-            'singularUncapitalize': uncapitalize(s),
-            'singularCapitalize': capitalize(s),
+  return entities.reduce((transf, entityName) => {
+      var p = pluralize(entityName);
+      var s = singular(entityName);
+      var k = key(models[entityName]);
 
-            'pluralize': p,
-            'pluralizeUncapitalize': uncapitalize(p),
-            'pluralizeCapitalize': capitalize(p)
-          });
+      transf.push({
+        'entity': models[entityName],
+        'key': k,
 
-          return transf;
-      }, []);
-    },
-    getRelations: (entity, entities) => {
-      var referent;
-      Object.keys(entity.entity).forEach((field) => {
-        if (entity.entity[field].referent) {
-          referent = entity.entity[field].referent;
-        }
+        'name': entityName,
+        'capitalize': capitalize(entityName),
+        'uncapitalize': uncapitalize(entityName),
+
+        'singular': s,
+        'singularUncapitalize': uncapitalize(s),
+        'singularCapitalize': capitalize(s),
+
+        'pluralize': p,
+        'pluralizeUncapitalize': uncapitalize(p),
+        'pluralizeCapitalize': capitalize(p)
       });
 
-      return referent && entities.filter((e) => e.name === referent);
+      return transf;
+  }, []);
+}
+
+addRelations = (entities) => {  
+  for( var i = 0 ; i < entities.length ; i++) {
+    var r = referent(entities[i].entity);
+    if(r.length > 0) {
+      entities[i].relations = {};
+      entities[i].relations[r[0]] = getRelations(entities[i], entities) ;
     }
+  }
+
+  return entities;
+}
+
+module.exports = {
+    getEntities: getEntities,
+    getRelations: getRelations,
+    addRelations: addRelations
 }

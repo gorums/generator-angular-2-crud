@@ -32,26 +32,21 @@ app.use(function(req, res, next) {
 
 <% entities.forEach(function (entity) { -%>
 var <%= entity.pluralizeUncapitalize %> = [
-    <%for (var i = 0 ; i < amount; i++)%>
+    <%for (var i = 0 ; i < amount; i++) { %>
     { 
-      <% Object.keys(entity.entity).forEach(function(field) { -%>
-      <% if(!entity.entity[field].key) { -%>
+<% Object.keys(entity.entity).forEach(function(field) { -%>
+<% if(entity.entity[field].key) { -%>
       <%= entity.key %>: guidGenerator(), 
-      <% } else { -%>
-      <% if (entity.entity[field].referent) { -%>
-      <% if(relations) { -%>
-      <% relations.forEach(function (relation) { -%>
-      <% if( entity.entity[field].referent === relation.name) { -%>
-      <%= field %>: <%= relation.pluralizeUncapitalize %>[<%= i %>].<%= relation.key %>,
-      <% } -%>
-      <% }) -%>
-      <% } -%>
-      <%} else { -%>
-      <%= field %>: "<%=faker.random.words%>",
-      <% } -%> 
-      <% }) -%>
+<% } else { -%>
+<% if(entity.entity[field].referent) { -%>
+      <%= field %>: <%= entity.relations[field][0].pluralizeUncapitalize %>[<%= i %>].<%= entity.relations[field][0].key %>,
+<%} else { -%>
+      <%= field %>: faker.random.words,
+<% } -%> 
+<% } -%>
+<% }) -%>
     },
-    <% }%>
+<% }%>
 ];
 
 app.get('/api/<%= entity.pluralizeUncapitalize %>', function (req, res) {  
@@ -70,13 +65,13 @@ app.post('/api/<%= entity.pluralizeUncapitalize %>', function (req, res) {
   res.json(<%= entity.singularUncapitalize %>)
 })
 
-app.patch('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {   
+app.put('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {   
   var doctor = <%= entity.singularUncapitalize %>.find((e) => e.<%= entity.key %> === req.params.id);
-  <% Object.keys(entity.entity).forEach(function(field) { -%>
-  <% if(!entity.entity[field].key) { -%>
+<% Object.keys(entity.entity).forEach(function(field) { -%>
+<% if(!entity.entity[field].key) { -%>
   <%= entity.singularUncapitalize %>.<%= field %> = req.body.<%= field %>;
-  <% } -%>
-  <% }) -%>
+<% } -%>
+<% }) -%>
   res.json(<%= entity.singularUncapitalize %>);
 })
 
@@ -88,6 +83,6 @@ app.delete('/api/<%= entity.singularUncapitalize %>/:id', function (req, res) {
 <% }) -%>
 
 
-app.listen(<%= port >, function () {
-  console.log('Example app listening on port <%= port >!')
+app.listen(<%= port %>, function () {
+  console.log('Example app listening on port <%= port %>!')
 })

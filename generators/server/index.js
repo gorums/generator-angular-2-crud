@@ -44,19 +44,21 @@ module.exports = Generator.extend({
       var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
       var entities = utils.getEntities(models, ['relativeURI']);
-      
+      entities = utils.addRelations(entities);
+
       this.fs.copy(
         this.templatePath('_package.json'),
         this.destinationPath('server/package.json')
       );
 
-      /*this.fs.copyTpl(
+      this.fs.copyTpl(
         this.templatePath('_server.js'),
         this.destinationPath('server/server.js'), {
           entities: entities,
-          port: this.props.port
+          port: this.props.port,
+          amount: this.props.amount
         }
-      );*/
+      );
     } catch (errr) {
       console.log('Error: ' + errr);
     }    
