@@ -78,10 +78,21 @@ npm start
 
 http://127.0.0.1:3000 or http://0.0.0.0:3000
 
+## Server Mock Generator
+
 Instance we can generate a server mock in NodeJs/ExpressJs
 
 ```bash
 yo angular-2-crud:server
+```
+
+## Run Server Mock
+
+Now you can run your server *NodeJs* mock
+
+```bash
+cd server
+npm start
 ```
 
 ## License
