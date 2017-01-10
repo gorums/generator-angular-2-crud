@@ -51,7 +51,7 @@ module.exports = Generator.extend({
   writing: function () {
     console.log('after calling readFile');
 
-    try {
+   // try {
       var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
       this.fs.copyTpl(
@@ -291,10 +291,10 @@ module.exports = Generator.extend({
         }
       );
     })
-    }
+    /*}
     catch (errr) {
       console.log('Error: ' + errr);
-    }
+    }*/
   },
 
   install: function () {

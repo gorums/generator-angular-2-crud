@@ -33,15 +33,19 @@ import {
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><%= field %></label>
                                 <div class="col-sm-10">
+<% if (entity.entity[field].textArea) { -%>
+                                    <textarea name="<%= field %>" [(ngModel)]="edit<%= entity.singularCapitalize -%>.<%= field %>" rows="10" cols="55"></textarea>
+<% } else { -%>
                                     <input type="<% if(entity.entity[field] === "boolean" || entity.entity[field].type === "boolean") { -%>checkbox"
 <% } -%><% if(entity.entity[field] === "number" || entity.entity[field].type === "number") { -%>number"
-<% } -%><% if(entity.entity[field] === "string" || entity.entity[field].type === "string") { -%>text"
+<% } -%><% if(entity.entity[field].key || entity.entity[field] === "string" || entity.entity[field].type === "string") { -%>text"
 <% } -%> class="form-control" 
 <%if(entity.entity[field].key) { -%> 
                                     disabled [ngModel]="<%= entity.singularUncapitalize -%>
 <%} else { -%>
                                     [(ngModel)]="edit<%= entity.singularCapitalize -%>
 <%} -%>.<%= field %>" name="<%= field %>"/>
+<% } -%>
                                 </div>
                             </div>
 <% } -%>
