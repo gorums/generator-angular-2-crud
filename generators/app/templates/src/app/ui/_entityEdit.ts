@@ -33,7 +33,10 @@ import {
                             <div class="form-group row">
                                 <label class="col-sm-2 col-form-label"><%= field %></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" 
+                                    <input type="<% if(entity.entity[field] === "boolean" || entity.entity[field].type === "boolean") { -%>checkbox"
+<% } -%><% if(entity.entity[field] === "number" || entity.entity[field].type === "number") { -%>number"
+<% } -%><% if(entity.entity[field] === "string" || entity.entity[field].type === "string") { -%>text"
+<% } -%> class="form-control" 
 <%if(entity.entity[field].key) { -%> 
                                     disabled [ngModel]="<%= entity.singularUncapitalize -%>
 <%} else { -%>
