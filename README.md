@@ -33,14 +33,17 @@ touch dataModel.json
 ```json
  {
     "Doctors": {
-        "Id": { "key": "true"},
+        "Id": { "key": "true" },
         "Name": { "type": "string", "require": "true" },
-        "Address": "string"
+        "Address": "string",
+        "Available": "boolean",
+        "Age": "number"
     },
     "Patients": {
         "Id": { "key": "true" },
         "Name": { "type": "string", "require": "true" },
         "Address": "string",
+        "History": {"type": "string", "textArea": "true"},
         "DoctorId": { "referent": "Doctors", "render": "Name" }
     },
     "relativeURI": "/api"
@@ -59,6 +62,8 @@ touch dataModel.json
  * **relativeURI**: Define the relative URI. An example using */api* http://127.0.0.1:3000/api/myentity 
  
  without *relativeURI* the URL is going to be http://127.0.0.1:3000/myentity
+ 
+ * **textArea**: Render the field as textarea
 
 ## Generation
 
