@@ -93,7 +93,7 @@ yo angular-2-crud:server
 
 ## Run Server Mock
 
-Now you can run your server *NodeJs* mock
+Now you can run your server *NodeJs* mock and test your Angular 2 CRUD with fake data.
 
 ```bash
 cd server
