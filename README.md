@@ -36,14 +36,14 @@ touch dataModel.json
         "Id": { "key": "true" },
         "Name": { "type": "string", "require": "true" },
         "Address": "string",
-        "Available": "boolean",
-        "Age": "number"
+        "Available": "boolean"        
     },
     "Patients": {
         "Id": { "key": "true" },
         "Name": { "type": "string", "require": "true" },
         "Address": "string",
-        "History": {"type": "string", "textArea": "true"},
+        "Age": "number",
+        "History": {"type": "string", "textArea": "true" },
         "DoctorId": { "referent": "Doctors", "render": "Name" }
     },
     "relativeURI": "/api"
