@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-2-crud",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "This app generate a CRUD for Angular2 ",
   "homepage": "https://github.com/gorums/generator-angular-2-crud",
   "author": {
