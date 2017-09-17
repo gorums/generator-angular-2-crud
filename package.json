@@ -19,10 +19,10 @@
     "crud"
   ],
   "dependencies": {
-    "chalk": "^1.1.3",
-    "pluralize": "^3.1.0",
-    "yeoman-generator": "^1.0.0",
-    "yosay": "^1.2.1"
+    "chalk": "^2.1.0",
+    "pluralize": "^7.0.0",
+    "yeoman-generator": "^2.0.0",
+    "yosay": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^4.7.0",
