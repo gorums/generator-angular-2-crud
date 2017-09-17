@@ -36,6 +36,7 @@
     "gulp-mocha": "^4.3.1",
     "gulp-nsp": "^2.4.2",
     "gulp-plumber": "^1.1.0",
+    "npm-github-release": "^0.7.5",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.7.0"
   },
@@ -45,9 +46,12 @@
       "mocha": true
     }
   },
-  "repository": "gorums/generator-angular-2-crud",
+  "repository": {
+    "url": "https://github.com/gorums/generator-angular-2-crud"
+  },
   "scripts": {
-    "prepublish": "gulp prepublish"
+    "prepublish": "gulp prepublish",
+    "release": "npm-github-release"
   },
   "license": "MIT"
 }
