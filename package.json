@@ -6,7 +6,7 @@
   "author": {
     "name": "gorums",
     "email": "acksecurity@hotmail.com",
-    "url": ""
+    "url": "https://github.com/gorums/generator-angular-2-crud"
   },
   "files": [
     "app",
@@ -14,9 +14,9 @@
   ],
   "main": "generators/index.js",
   "keywords": [
+    "yeoman-generator",
     "angular2",
-    "crud",
-    "yeoman-generator"
+    "crud"
   ],
   "dependencies": {
     "chalk": "^1.1.3",
