@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-2-crud",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "description": "This app generate a CRUD for Angular2 ",
   "homepage": "https://github.com/gorums/generator-angular-2-crud",
   "author": {
@@ -25,19 +25,19 @@
     "yosay": "^1.2.1"
   },
   "devDependencies": {
-    "eslint": "^3.1.1",
-    "eslint-config-xo-space": "^0.15.0",
+    "eslint": "^4.7.0",
+    "eslint-config-xo-space": "^0.16.0",
     "gulp": "^3.9.1",
-    "gulp-coveralls": "^0.1.0",
-    "gulp-eslint": "^3.0.1",
-    "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^1.0.0",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-eslint": "^4.0.0",
+    "gulp-exclude-gitignore": "^1.2.0",
+    "gulp-istanbul": "^1.1.2",
     "gulp-line-ending-corrector": "^1.0.1",
-    "gulp-mocha": "^3.0.1",
-    "gulp-nsp": "^2.1.0",
-    "gulp-plumber": "^1.0.0",
-    "yeoman-assert": "^2.2.1",
-    "yeoman-test": "^1.6.0"
+    "gulp-mocha": "^4.3.1",
+    "gulp-nsp": "^2.4.2",
+    "gulp-plumber": "^1.1.0",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.7.0"
   },
   "eslintConfig": {
     "extends": "xo-space",
