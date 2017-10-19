@@ -5,8 +5,8 @@ var yosay = require('yosay');
 var fs = require('fs');
 var utils = require('../utils');
 
-module.exports = Generator.extend({
-  prompting: function () {
+module.exports = class extends Generator{
+  prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the ' + chalk.red('Angular 2 CRUD') + ' generator!'
@@ -48,7 +48,7 @@ module.exports = Generator.extend({
     }.bind(this));
   },
 
-  writing: function () {
+  writing () {
     console.log('after calling readFile');
 
    // try {
@@ -297,7 +297,7 @@ module.exports = Generator.extend({
     }*/
   },
 
-  install: function () {
+  install () {
     this.installDependencies();
   }
 });
