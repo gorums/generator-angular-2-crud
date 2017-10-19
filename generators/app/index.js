@@ -46,7 +46,7 @@ module.exports = class extends Generator{
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));
-  },
+  }
 
   writing () {
     console.log('after calling readFile');
