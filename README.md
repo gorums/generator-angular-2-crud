@@ -8,7 +8,7 @@ First, install [Yeoman](http://yeoman.io) and [generator-angular-2-crud][npm-url
 
 ```bash
 npm install -g yo
-npm install -g generator-angular-2-crud      <------ is not WORKING, we have a open issues on 'yo' repository
+npm install -g generator-angular-2-crud      <------ is not WORKING, we have an open issues on 'yo' repository
 ```
 
 To run your new project you need install the next packages:
