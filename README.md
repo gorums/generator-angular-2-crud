@@ -8,7 +8,7 @@ First, install [Yeoman](http://yeoman.io) and [generator-angular-2-crud][npm-url
 
 ```bash
 npm install -g yo
-npm install -g generator-angular-2-crud
+npm install -g generator-angular-2-crud      <------ is not WORKING, we have a open issues on 'yo' repository
 ```
 
 To run your new project you need install the next packages:
@@ -18,6 +18,24 @@ npm install --global typescript
 npm install --global webpack
 npm install --global webpack-dev-server
 ```
+
+### Installing generator-angular-2-crud from scratch
+
+ 1 - ``npm install -g yo``
+ 
+ 2 - Delete the globally installed generator (if is installed by mistake): ``npm uninstall -g generator-angular-2-crud``
+ 
+ 3 - go into your npm root repo  ``cd `npm -g root` ``
+ 
+ 4- Clone generator-angular-2-crud repo ``git clone https://github.com/gorums/generator-angular-2-crud.git``
+ 
+ 5- ``cd generator-angular-2-crud``
+ 
+ 6- ``npm install``
+ 
+ 7- return to your directory where you have defined the dataModel.json file and generate the crud : ``yo angular-2-crud``
+
+6- Enjoy!
  
 ## DataModel
 
@@ -99,6 +117,11 @@ Now you can run your server *NodeJs* mock and test your Angular 2 CRUD with fake
 cd server
 npm start
 ```
+## Thanks for help
+
+[@smansri](https://github.com/smansri)
+
+[@augustbering](https://github.com/augustbering)
 
 ## License
 
