@@ -295,7 +295,7 @@ module.exports = class extends Generator{
     catch (errr) {
       console.log('Error: ' + errr);
     }*/
-  },
+  }
 
   install () {
     this.installDependencies();
