@@ -23,7 +23,7 @@ npm install --global webpack-dev-server
 
  1 - ``npm install -g yo``
  
- 2 - Delete the globally installed generator (if is installed by mistake): ``npm uninstall -g generator-angular-2-crud``
+ 2 - Delete the globally installed generator (if was installed by mistake): ``npm uninstall -g generator-angular-2-crud``
  
  3 - go into your npm root repo  ``cd `npm -g root` ``
  
