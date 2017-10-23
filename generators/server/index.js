@@ -1,13 +1,13 @@
 'use strict';
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const utils = require('../utils');
-const path = require('path');
-const fs = require('fs');
+var Generator = require('yeoman-generator');
+var chalk = require('chalk');
+var yosay = require('yosay');
+var utils = require('../utils');
+var path = require('path');
+var fs = require('fs');
 
-module.exports = Generator.extend({
-  prompting: function () {
+module.exports = class extends Generator{
+  prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the server ' + chalk.red('generator-angular-2-crud') + ' generator mock!'
@@ -37,9 +37,9 @@ module.exports = Generator.extend({
       // To access props later use this.props.someAnswer;
       this.props = props;
     }.bind(this));    
-  },
+  }
 
-  writing: function () {
+  writing () {
     try {
       var models = JSON.parse(fs.readFileSync(this.props.dataModel, 'utf8'));
 
@@ -62,11 +62,11 @@ module.exports = Generator.extend({
     } catch (errr) {
       console.log('Error: ' + errr);
     }    
-  },
+  }
 
-  install: function () {
+  install () {
     var npmdir = process.cwd() + '/server';
     process.chdir(npmdir);
     this.installDependencies();
   }
-});
+}
