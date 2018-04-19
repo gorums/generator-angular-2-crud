@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "outDir": "dist",
     "rootDir": "src",
     "sourceMap": true,
@@ -12,7 +12,8 @@
     "types": [
       "node",
       "core-js"
-    ]
+    ],
+    "skipLibCheck": true
   },
   "compileOnSave": false,
   "buildOnSave": false

@@ -1,11 +1,11 @@
 'use strict';
-var Generator = require('yeoman-generator');
-var chalk = require('chalk');
-var yosay = require('yosay');
-var fs = require('fs');
-var utils = require('../utils');
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const fs = require('fs');
+const utils = require('../utils');
 
-module.exports = class extends Generator{
+module.exports = class extends Generator {
   prompting () {
     // Have Yeoman greet the user.
     this.log(yosay(
