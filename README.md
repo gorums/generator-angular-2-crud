@@ -1,3 +1,5 @@
+I moved this tool to this wep app [https://www.atomicg.dev/](https://www.atomicg.dev/) Enjoy ;)
+
 # generator-angular-2-crud 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > This npm generate a CRUD for Angular 2 using a data model definition and best practices
