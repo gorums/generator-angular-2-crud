@@ -1,4 +1,4 @@
-I moved this tool to this wep app [https://www.atomicg.dev/](https://www.atomicg.dev/) Enjoy ;)
+I moved this tool to this WebSite [https://www.atomicg.dev/](https://www.atomicg.dev/) Enjoy ;)
 
 # generator-angular-2-crud 
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
